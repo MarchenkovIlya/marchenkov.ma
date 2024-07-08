@@ -98,29 +98,5 @@ Class marchenkov_ma extends CModule {
             'addedButton'
         );
     }
-
-    private function createItemMenu() {
-        $itemData = array(
-            "TEXT" => 'Достижения',
-            "LINK" => '/achievements/index.php',
-            "ID" => marchenkov_ma::MENU_ITEM_ID,
-        );
-
-        $adminOption = Option::get('intranet', 'left_menu_items_to_all_s1');
-
-        if (!empty($adminOption)) {
-            $adminOption = unserialize($adminOption);
-            foreach ($adminOption as $item) {
-                if ($item["ID"] == $itemData["ID"])
-                    return;
-            }
-            $adminOption[] = $itemData;
-        }
-        else {
-            $adminOption = array($itemData);
-        }
-
-        Option::set("intranet", "left_menu_items_to_all_s1", serialize($adminOption));
-    }
 }
 ?>
